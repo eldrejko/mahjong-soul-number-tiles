@@ -56,4 +56,8 @@ the same way, and you can switch between the two versions freely.
 
 ![Serbian edition](preview-serbian.png)
 
+Table centre in a match (mockup on a real screenshot), one per round wind:
+
+![Serbian table centre in game](preview-serbian-ingame.png)
+
 </details>
