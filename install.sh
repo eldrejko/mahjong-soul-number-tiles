@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Installs the Serbian Mahjong Soul tiles (Steam on Linux / Proton). Close Mahjong Soul first.
+# Installs the Mahjong Soul number tiles (Steam on Linux / Proton). Close Mahjong Soul first.
 # Your own files are saved to original_backup/ before anything is replaced.
 # usage: bash install.sh [path/to/Jantama_MahjongSoul_Data]
 set -u

@@ -1,5 +1,5 @@
 @echo off
-rem Installs the Serbian Mahjong Soul tiles. Close Mahjong Soul first.
+rem Installs the Mahjong Soul number tiles. Close Mahjong Soul first.
 setlocal
 set "GAME=C:\Program Files (x86)\Steam\steamapps\common\Mahjong Soul\Jantama_MahjongSoul_Data"
 if not exist "%GAME%" (

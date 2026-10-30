@@ -14,7 +14,7 @@ Winds, dragons and the table centre are left exactly as the game ships them.
 
 ## Install
 
-Download `MahjongSoul_SerbianTiles.zip` from the [latest release](../../releases/latest), unzip it,
+Download `MahjongSoul_NumberTiles.zip` from the [latest release](../../releases/latest), unzip it,
 close Mahjong Soul, then:
 
 - **Windows:** double-click `install.bat`. If the game isn't in the default Steam folder, it asks
