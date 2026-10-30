@@ -14,20 +14,31 @@ Winds, dragons and the table centre are left exactly as the game ships them.
 
 ## Install
 
-1. Download `MahjongSoul_SerbianTiles.zip` from the [latest release](../../releases/latest) and unzip it.
-2. Close Mahjong Soul.
-3. Double-click `install.bat`. It backs up your original files first. If the game isn't in the
-   default Steam folder, it asks for the path to `Jantama_MahjongSoul_Data`.
-4. In the game, use the **default** tile design (only that one is changed).
+Download `MahjongSoul_SerbianTiles.zip` from the [latest release](../../releases/latest), unzip it,
+close Mahjong Soul, then:
+
+- **Windows:** double-click `install.bat`. If the game isn't in the default Steam folder, it asks
+  for the path to `Jantama_MahjongSoul_Data`.
+- **Linux (Steam + Proton):** run `bash install.sh`. It finds the game in your Steam libraries
+  (native, Flatpak or Snap Steam), or you can give the path:
+  `bash install.sh "/path/to/Jantama_MahjongSoul_Data"`
+
+In the game, use the **default** tile design (only that one is changed).
+
+## Backups
+
+- Install saves your own game files to `original_backup/` before replacing anything.
+- The zip also ships untouched copies of the original files in `backup/`.
 
 ## Uninstall
 
-Close the game and run `uninstall.bat`, or use Steam → Properties → Installed Files →
-*Verify integrity of game files*.
+Close the game and run `uninstall.bat` (Windows) or `bash uninstall.sh` (Linux). It restores from
+`original_backup/`, or from `backup/` if that's missing. Steam → Properties → Installed Files →
+*Verify integrity of game files* also puts everything back.
 
 ## Notes
 
-- Built for the current Steam version. If `install.bat` says **skip** for a file, your game has a
+- Built for the current Steam version. If the installer says **skip** for a file, your game has a
   different version of that file and that part won't change.
-- A game update can undo it. Just run `install.bat` again.
+- A game update can undo it. Just run the installer again.
 - Modifying game files is against the Mahjong Soul terms of service. Use at your own risk.
