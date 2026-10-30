@@ -42,3 +42,17 @@ Close the game and run `uninstall.bat` (Windows) or `bash uninstall.sh` (Linux).
   different version of that file and that part won't change.
 - A game update can undo it. Just run the installer again.
 - Modifying game files is against the Mahjong Soul terms of service. Use at your own risk.
+
+## Other versions
+
+<details>
+<summary>Serbian edition</summary>
+
+Same number tiles, plus Serbian winds (И Ј З С with istok / jug / zapad / sever), B / Ze / C dragon
+labels when "Show Tile Indexes" is on, and a Serbian table centre (English game client only).
+Download `MahjongSoul_NumberTiles_Serbian.zip` from the same release. It installs and uninstalls
+the same way, and you can switch between the two versions freely.
+
+![Serbian edition](preview-serbian.png)
+
+</details>

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Puts the original Mahjong Soul files back. Close Mahjong Soul first.
-# Uses the copies install.sh saved (original_backup/), or else the untouched originals shipped in backup/.
+# Per file: the copy install.sh saved (original_backup/), or else the untouched original shipped in backup/.
 # usage: bash uninstall.sh [path/to/Jantama_MahjongSoul_Data]
 set -u
 HERE="$(cd "$(dirname "$0")" && pwd)"
@@ -25,12 +25,13 @@ fi
 [ -d "$GAME/StreamingAssets" ] || { echo "That is not the game data folder."; exit 1; }
 echo "Game: $GAME"
 
-SRC="$HERE/original_backup"; [ -d "$SRC" ] || SRC="$HERE/backup"
 for dir in StreamingAssets ABM-Fold; do
-  for f in "$SRC/$dir"/*; do
+  for f in "$HERE/backup/$dir"/*; do
     [ -f "$f" ] || continue
-    t="$GAME/$dir/StandaloneWindows64/$(basename "$f")"
-    [ -f "$t" ] && cp "$f" "$t" && echo "restored $dir/$(basename "$f")"
+    name="$(basename "$f")"; t="$GAME/$dir/StandaloneWindows64/$name"
+    [ -f "$t" ] || continue
+    [ -f "$HERE/original_backup/$dir/$name" ] && f="$HERE/original_backup/$dir/$name"
+    cp "$f" "$t" && echo "restored $dir/$name"
   done
 done
 echo 'Done. (Steam "Verify integrity of game files" also restores everything.)'

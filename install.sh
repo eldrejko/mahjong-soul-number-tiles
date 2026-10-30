@@ -31,8 +31,10 @@ for dir in StreamingAssets ABM-Fold; do
     [ -f "$f" ] || continue
     name="$(basename "$f")"; t="$GAME/$dir/StandaloneWindows64/$name"
     if [ ! -f "$t" ]; then echo "skip $dir/$name (not in your game)"; skip=$((skip+1)); continue; fi
-    mkdir -p "$HERE/original_backup/$dir"
-    [ -f "$HERE/original_backup/$dir/$name" ] || cp "$t" "$HERE/original_backup/$dir/$name"
+    if cmp -s "$t" "$HERE/backup/$dir/$name"; then  # still the untouched original, not another version of this skin
+      mkdir -p "$HERE/original_backup/$dir"
+      [ -f "$HERE/original_backup/$dir/$name" ] || cp "$t" "$HERE/original_backup/$dir/$name"
+    fi
     cp "$f" "$t" && echo "ok   $dir/$name" && n=$((n+1))
   done
 done
