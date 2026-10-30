@@ -1,4 +1,4 @@
-# simple-tile-watcher
+# mahjong-soul-number-tiles
 
 Readable number tiles for **Mahjong Soul (Steam)**. The Chinese numerals on the number tiles become
 big digits, so you can tell 1-9 apart at a glance:
