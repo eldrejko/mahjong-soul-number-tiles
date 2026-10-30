@@ -49,7 +49,8 @@ Close the game and run `uninstall.bat` (Windows) or `bash uninstall.sh` (Linux).
 <summary>Serbian edition</summary>
 
 Same number tiles, plus Serbian winds (И Ј З С with istok / jug / zapad / sever), B / Ze / C dragon
-labels when "Show Tile Indexes" is on, and a Serbian table centre (English game client only).
+labels when "Show Tile Indexes" is on, and a Serbian table centre (RUNDA / ISTOK / JUG / ZAPAD / SEVER,
+English game client only).
 Download `MahjongSoul_NumberTiles_Serbian.zip` from the same release. It installs and uninstalls
 the same way, and you can switch between the two versions freely.
 
