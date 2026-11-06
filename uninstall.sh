@@ -17,6 +17,8 @@ find_game() {  # every Steam library of native, Flatpak and Snap Steam
   done
 }
 
+known() { grep -qxi "$(md5sum "$1" | cut -d' ' -f1)" "$HERE/known.txt"; }  # an original or a file of this skin
+
 GAME="${1:-$(find_game)}"
 if [ ! -d "$GAME/StreamingAssets" ]; then
   echo "Mahjong Soul not found in your Steam libraries."
@@ -25,13 +27,15 @@ fi
 [ -d "$GAME/StreamingAssets" ] || { echo "That is not the game data folder."; exit 1; }
 echo "Game: $GAME"
 
-for dir in StreamingAssets ABM-Fold; do
-  for f in "$HERE/backup/$dir"/*; do
-    [ -f "$f" ] || continue
-    name="$(basename "$f")"; t="$GAME/$dir/StandaloneWindows64/$name"
+for f in "$HERE/backup"/*; do
+  [ -f "$f" ] || continue
+  name="$(basename "$f")"
+  for dir in StreamingAssets ABM-Fold; do
+    t="$GAME/$dir/StandaloneWindows64/$name"
     [ -f "$t" ] || continue
-    [ -f "$HERE/original_backup/$dir/$name" ] && f="$HERE/original_backup/$dir/$name"
-    cp "$f" "$t" && echo "restored $dir/$name"
+    known "$t" || continue  # leave files from a newer game version alone
+    src="$f"; [ -f "$HERE/original_backup/$dir/$name" ] && src="$HERE/original_backup/$dir/$name"
+    cp "$src" "$t" && echo "restored $dir/$name"
   done
 done
 echo 'Done. (Steam "Verify integrity of game files" also restores everything.)'

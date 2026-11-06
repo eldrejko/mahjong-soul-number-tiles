@@ -38,8 +38,9 @@ Close the game and run `uninstall.bat` (Windows) or `bash uninstall.sh` (Linux).
 
 ## Notes
 
-- Built for the current Steam version. If the installer says **skip** for a file, your game has a
-  different version of that file and that part won't change.
+- Built for the current Steam version (updated for the 6 November 2026 game update). The installer
+  only replaces game files it recognises, so a newer game version is never overwritten with stale
+  files. If it says **skip** for a file, that file changed in a game update and that part won't change.
 - A game update can undo it. Just run the installer again.
 - Modifying game files is against the Mahjong Soul terms of service. Use at your own risk.
 

@@ -17,6 +17,8 @@ find_game() {  # every Steam library of native, Flatpak and Snap Steam
   done
 }
 
+known() { grep -qxi "$(md5sum "$1" | cut -d' ' -f1)" "$HERE/known.txt"; }  # an original or a file of this skin
+
 GAME="${1:-$(find_game)}"
 if [ ! -d "$GAME/StreamingAssets" ]; then
   echo "Mahjong Soul not found in your Steam libraries."
@@ -26,19 +28,23 @@ fi
 echo "Game: $GAME"
 
 n=0; skip=0
-for dir in StreamingAssets ABM-Fold; do
-  for f in "$HERE/files/$dir"/*; do
-    [ -f "$f" ] || continue
-    name="$(basename "$f")"; t="$GAME/$dir/StandaloneWindows64/$name"
-    if [ ! -f "$t" ]; then echo "skip $dir/$name (not in your game)"; skip=$((skip+1)); continue; fi
-    if cmp -s "$t" "$HERE/backup/$dir/$name"; then  # still the untouched original, not another version of this skin
+for f in "$HERE/files"/*; do
+  [ -f "$f" ] || continue
+  name="$(basename "$f")"; hit=0
+  for dir in StreamingAssets ABM-Fold; do  # game updates move bundles between these two
+    t="$GAME/$dir/StandaloneWindows64/$name"
+    [ -f "$t" ] || continue
+    hit=1
+    if ! known "$t"; then echo "skip $dir/$name (different game version)"; skip=$((skip+1)); continue; fi
+    if cmp -s "$t" "$HERE/backup/$name"; then  # still the untouched original, not another version of this skin
       mkdir -p "$HERE/original_backup/$dir"
       [ -f "$HERE/original_backup/$dir/$name" ] || cp "$t" "$HERE/original_backup/$dir/$name"
     fi
     cp "$f" "$t" && echo "ok   $dir/$name" && n=$((n+1))
   done
+  [ "$hit" = 1 ] || { echo "skip $name (not in your game)"; skip=$((skip+1)); }
 done
 echo
 echo "Installed $n file(s), skipped $skip."
-[ "$skip" -gt 0 ] && echo "Skipped files belong to a different game version - the matching part of the skin won't show."
+[ "$skip" -gt 0 ] && echo "Skipped files don't match your game version - that part of the skin won't show. Look for a newer release."
 exit 0
